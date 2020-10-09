@@ -53,7 +53,7 @@
     
           tooltipTrigger.addEventListener('mouseleave', () => this._hideTooltip(tooltipObject));
           tooltipTrigger.addEventListener('click', () => this._hideTooltip(tooltipObject));
-          tooltipTrigger.addEventListener('blur', () => this._hideTooltip(tooltipObject));
+          tooltipTrigger.addEventListener('blur', () => this._hideTooltip(tooltipObject)); 
         })
       },
       
