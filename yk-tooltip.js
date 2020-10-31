@@ -43,7 +43,7 @@
             position: null,
             showDelay: 150,
             showDelayTimeout: null,
-            hideDelay: 0,
+            hideDelay: 0, 
             hideDelayTimeout: null,
             target: tooltipTrigger
           }
