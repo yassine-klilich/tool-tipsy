@@ -59,9 +59,10 @@
       
       _showTooltip: function(tooltipObject) {
         tooltipObject.showDelay = parseFloat(tooltipObject.target.getAttribute(YK_Tooltip._attrOptions.showDelay)) || YK_Tooltip._showDelay;
-    
+        clearTimeout(tooltipObject.showDelayTimeout);
+        clearTimeout(tooltipObject.hideDelayTimeout);
+        tooltipObject.hideDelayTimeout = null;
         tooltipObject.showDelayTimeout = setTimeout(()=>{
-          clearTimeout(tooltipObject.hideDelayTimeout);
           tooltipObject.text = tooltipObject.target.getAttribute(YK_Tooltip._attrOptions.text);
           tooltipObject.position = tooltipObject.target.getAttribute(YK_Tooltip._attrOptions.position) || YK_Tooltip._positions.below;
           YK_Tooltip._tooltipText.textContent = tooltipObject.text;
@@ -81,10 +82,10 @@
     
       _hideTooltip: function(tooltipObject) {
         tooltipObject.hideDelay = parseFloat(tooltipObject.target.getAttribute(YK_Tooltip._attrOptions.hideDelay)) || YK_Tooltip._hideDelay;
-    
+        clearTimeout(tooltipObject.hideDelayTimeout);
+        clearTimeout(tooltipObject.showDelayTimeout);
+        tooltipObject.showDelayTimeout = null;
         tooltipObject.hideDelayTimeout = setTimeout(()=>{
-          clearTimeout(tooltipObject.showDelayTimeout);
-          tooltipObject.showDelayTimeout = null;
           YK_Tooltip._tooltipOverlayWrapper.style.visibility = "hidden";
           YK_Tooltip._tooltip.style.opacity = "0";
         }, tooltipObject.hideDelay);
