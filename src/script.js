@@ -1,4 +1,4 @@
 
-window.addEventListener("load", function() {
-  YK_Tooltip.init()
-})
+import { YK_Tooltip } from "./yk-tooltip.js"
+
+YK_Tooltip.init()
