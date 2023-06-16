@@ -1,4 +1,12 @@
 
-import { YK_Tooltip } from "./yk-tooltip.js"
+import ToolTipsy from "./tool-tipsy.js"
 
-YK_Tooltip.init()
+ToolTipsy.init()
+
+ToolTipsy.attach({
+  target: document.getElementById("box"),
+  content: "This is a BOX",
+  position: "left",
+})
+
+console.log(ToolTipsy);

@@ -11,12 +11,24 @@
     body {
       font-family: 'Roboto', sans-serif;
     }
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: rgb(216, 54, 54);
+    }
+    button {
+      position: relative;
+      left: 100px;
+      top: 100px;
+    }
   </style>
 
 </head>
 <body>
   
-  <button style="position: relative; left: 100px; top: 100px;" yk-tooltip="Click here !" yk-position="above" yk-show-delay="800" yk-hide-delay="800">Click me</button>
+  <button tipsy="Click here !" tipsy-position="above" tipsy-show-after="800" tipsy-hide-after="800">Click me</button>
+  
+  <div id="box"></div>
 
 </body>
 </html>

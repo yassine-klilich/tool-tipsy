@@ -1,4 +1,4 @@
-.yk-tooltip-overlay-wrapper {
+.tipsy-overlay-wrapper {
   visibility: hidden;
   position: fixed;
   top: 0px;
@@ -7,10 +7,10 @@
   height: 100%;
   pointer-events: none;
 }
-.yk-tooltip-overlay {
+.tipsy-overlay {
   position: absolute;
 }
-.yk-tooltip {
+.tipsy-tooltip {
   opacity: 0;
   margin: 14px;
   padding: 6px 8px;
@@ -20,7 +20,7 @@
   transition-property: opacity;
   transition-duration: .1s;
 }
-.yk-tooltip-text {
+.tipsy-tooltip-text {
   font-size: 12px;
   color: #fff;
 }
