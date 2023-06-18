@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yassine-klilich/yk-tooltip.git"
+    "url": "git+https://github.com/yassine-klilich/tool-tipsy.git"
   },
   "author": "Yassine KLILICH",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yassine-klilich/yk-tooltip/issues"
+    "url": "https://github.com/yassine-klilich/tool-tipsy/issues"
   },
-  "homepage": "https://github.com/yassine-klilich/yk-tooltip#readme",
+  "homepage": "https://github.com/yassine-klilich/tool-tipsy#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",

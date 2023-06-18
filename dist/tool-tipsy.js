@@ -38,11 +38,6 @@ const Tipsy = (function() {
     })
   }
 
-  /**
-   * Attach a tooltip to an element
-   * @param {object} config 
-   * @returns the new created ToolTipsy object
-   */
   _tipsy_.attach = function(config) {
     if (config == null) {
       throw new Error(`Tipsy[attach]: no config is provided`)
@@ -65,15 +60,10 @@ const Tipsy = (function() {
 
     return _config
   }
-  
-  /**
-   * Detach a tooltip from an element
-   * @param {ToolTipsy} tipsy 
-   * @returns the detached ToolTipsy object, and undefined in case no tooltip was detached
-   */
+
   _tipsy_.detach = function(tipsy) {
     if (tipsy) {
-      return tipsy.detach()
+      tipsy.detach()
     }
   }
 
@@ -314,8 +304,6 @@ const Tipsy = (function() {
     this.target.removeEventListener('blur', _hideTooltip)
     delete Tipsy.tooltips[this.id]
     --_countTooltips
-
-    return this
   }
 
   return _tipsy_

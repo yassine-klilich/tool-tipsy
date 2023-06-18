@@ -1,12 +1,16 @@
 
-import ToolTipsy from "./tool-tipsy.js"
+import Tipsy from "./tool-tipsy.js"
 
-ToolTipsy.init()
+Tipsy.init()
 
-ToolTipsy.attach({
+console.log(Tipsy.attach({
   target: document.getElementById("box"),
   content: "This is a BOX",
   position: "left",
-})
+}));
 
-console.log(ToolTipsy);
+console.log(Tipsy);
+
+
+console.log(Tipsy.detach(Tipsy.tooltips[`tipsy-0`]))
+console.log(Tipsy.detach(Tipsy.tooltips[`tipsy-3`]))
