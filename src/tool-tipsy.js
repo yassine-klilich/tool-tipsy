@@ -3,22 +3,14 @@ import "./tool-tipsy.css"
 const Tipsy = (function() {
   const DEFAULT_SHOW_AFTER = 150
   const DEFAULT_HIDE_AFTER = 0
-  const Position = Object.freeze({
-    above: "above",
-    below: "below",
-    left: "left",
-    right: "right"
-  })
   let _tooltipOverlayWrapper, _tooltipOverlay, _tooltip, _tooltipText
   let timeoutId = null
 
   const _tipsy_ = {
     tooltips: {}
   }
-  let _countTooltips = 0
+  let _length = 0
   let _idTipsy = 0
-
-  _tipsy_.Position = Object.freeze(Position)
 
   _tipsy_.init = function() {
     _appendOverlay()
@@ -28,7 +20,7 @@ const Tipsy = (function() {
       const config = new ToolTipsy({
         id: `tipsy-${_idTipsy}`,
         content: el.getAttribute("tipsy") || "",
-        position: el.getAttribute("tipsy-position") || Position.below,
+        position: el.getAttribute("tipsy-position") || TipsyPosition.below,
         showAfter: el.getAttribute("tipsy-show-after") || DEFAULT_SHOW_AFTER,
         hideAfter: el.getAttribute("tipsy-hide-after") || DEFAULT_HIDE_AFTER,
         target: el
@@ -51,7 +43,7 @@ const Tipsy = (function() {
       id: `tipsy-${_idTipsy}`,
       content: config.content || "",
       position: config.position || "",
-      showAfter: config.showAfter || DEFAULT_SHOW_AFTER,
+      showAfter: _getShowAfter(config),
       hideAfter: config.hideAfter || DEFAULT_HIDE_AFTER,
       target: config.target
     })
@@ -76,6 +68,14 @@ const Tipsy = (function() {
       return tipsy.detach()
     }
   }
+  
+  /**
+   * Get length of created tooltips
+   * @returns {number}
+   */
+  _tipsy_.getLength = function() {
+    return _length
+  }
 
   function _buildTooltip(config) {
     const target = config.target
@@ -91,21 +91,21 @@ const Tipsy = (function() {
     target.setAttribute("tipsy-id", config.id)
 
     _tipsy_.tooltips[config.id] = config
-    ++_countTooltips
+    ++_length
     ++_idTipsy
   }
 
   function _showTooltip() {
     const config = _tipsy_.tooltips[this.getAttribute("tipsy-id")]
-    config.showAfter = parseFloat(config.target.getAttribute('tipsy-show-after')) || DEFAULT_SHOW_AFTER
+    config.showAfter = _getShowAfter(config)
     _clearTimeout()
     _hideOverlay()
     timeoutId = setTimeout(()=>{
-      config.content = config.target.getAttribute('tipsy')
-      config.position = config.target.getAttribute('tipsy-position') || Position.below
+      config.content = config.content
+      config.position = config.position || TipsyPosition.below
       _tooltipText.textContent = config.content
   
-      if(!Position[config.position]) {
+      if(!TipsyPosition[config.position]) {
         throw new Error(`Tipsy[_showTooltip]: Tooltip position '${config.position}' is invalid`)
       }
 
@@ -119,7 +119,7 @@ const Tipsy = (function() {
 
   function _hideTooltip() {
     const config = _tipsy_.tooltips[this.getAttribute("tipsy-id")]
-    config.hideAfter = parseFloat(config.target.getAttribute('tipsy-hide-after')) || DEFAULT_HIDE_AFTER
+    config.hideAfter = config.hideAfter || DEFAULT_HIDE_AFTER
     _clearTimeout()
     if (config.hideAfter == 0) {
       _hideOverlay()
@@ -176,7 +176,7 @@ const Tipsy = (function() {
     let spaceFromRight = (window.innerWidth - scrollBarWidth) - targetRect.right
 
     switch (position) {
-      case Position.left:
+      case TipsyPosition.left:
         if(spaceFromLeft >= tooltipRect.width) {
           return spaceFromLeft - tooltipRect.width
         }
@@ -196,7 +196,7 @@ const Tipsy = (function() {
           }
         }
         
-      case Position.right:
+      case TipsyPosition.right:
         if(spaceFromRight >= tooltipRect.width) {
           return targetRect.right
         }
@@ -216,8 +216,8 @@ const Tipsy = (function() {
           }
         }
 
-      case Position.above:
-      case Position.below:
+      case TipsyPosition.above:
+      case TipsyPosition.below:
         spaceFromLeft = targetRect.left + (targetRect.width / 2)
         let scrollBarWidth = (window.innerWidth - _tooltipOverlayWrapper.getBoundingClientRect().width)
         spaceFromRight = ((window.innerWidth - scrollBarWidth) - targetRect.right) + (targetRect.width / 2)
@@ -246,7 +246,7 @@ const Tipsy = (function() {
     let spaceFromBottom = (window.innerHeight - scrollBarHeight) - targetRect.bottom
 
     switch (position) {
-      case Position.above:
+      case TipsyPosition.above:
         if(spaceFromTop >= tooltipRect.height) {
           return targetRect.top - tooltipRect.height
         }
@@ -260,7 +260,7 @@ const Tipsy = (function() {
           }
         }
 
-      case Position.below:
+      case TipsyPosition.below:
         if(spaceFromBottom >= tooltipRect.height) {
           return targetRect.bottom
         }
@@ -274,8 +274,8 @@ const Tipsy = (function() {
           }
         }
 
-      case Position.left:
-      case Position.right:
+      case TipsyPosition.left:
+      case TipsyPosition.right:
         spaceFromTop = targetRect.top + (targetRect.height / 2)
         spaceFromBottom = ((window.innerHeight - scrollBarHeight) - targetRect.bottom) + (targetRect.height / 2)
         let tooltipHalfHeight = (tooltipRect.height / 2)
@@ -297,6 +297,10 @@ const Tipsy = (function() {
     }
   }
 
+  function _getShowAfter(config) {
+    return (config.showAfter == 0) ? 0 : (config.showAfter || DEFAULT_SHOW_AFTER)
+  }
+
   function ToolTipsy(config) {
     this.id = config.id
     this.content = config.content
@@ -313,12 +317,23 @@ const Tipsy = (function() {
     this.target.removeEventListener('click', _hideTooltip)
     this.target.removeEventListener('blur', _hideTooltip)
     delete Tipsy.tooltips[this.id]
-    --_countTooltips
+    --_length
 
     return this
   }
 
   return _tipsy_
 })()
+
+const TipsyPosition = Object.freeze({
+  above: "above",
+  below: "below",
+  left: "left",
+  right: "right"
+})
+
+export {
+  TipsyPosition
+}
 
 export default Tipsy
