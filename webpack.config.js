@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    "tool-tipsy": "./src/tool-tipsy.js",
+    "yk-tool-tipsy": "./src/yk-tool-tipsy.js",
     script: "./src/script.js"
   },
   module: {

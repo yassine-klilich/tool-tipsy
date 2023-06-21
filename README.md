@@ -1,16 +1,16 @@
-# Tool-Tipsy
+# YK-Tool-Tipsy
 
-Tool-Tipsy is a lightweight tooltip library.
+YK-Tool-Tipsy is a lightweight tooltip library.
 
 # Installation
 
 ```
-npm install tool-tipsy
+npm install yk-tool-tipsy
 ```
 
 # How to use
 
-- tool-tipsy consists of 4 attributes:
+- YK-Tool-Tipsy consists of 4 attributes:
 ```html
 <button
   tipsy="Hello Universe!"
@@ -29,7 +29,7 @@ tipsy-hide-after       | milliseconds
 
 - And in your JS file import the library and call init function to inilitialize your tooltips that has been defined in HTML.
 ```javascript
-import Tipsy from "tool-tipsy"
+import Tipsy from "yk-tool-tipsy"
 
 Tipsy.init()
 ```
@@ -77,6 +77,8 @@ Tipsy.tooltips['tipsy-0'].hideAfter = 800
 # References
 - Tooltip positions
 ```javascript
+import { TipsyPosition } from "yk-tool-tipsy"
+
 TipsyPosition.above
 TipsyPosition.below
 TipsyPosition.left

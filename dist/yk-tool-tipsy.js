@@ -1,4 +1,4 @@
-import "./tool-tipsy.css"
+import "./yk-tool-tipsy.css"
 
 const Tipsy = (function() {
   const DEFAULT_SHOW_AFTER = 150

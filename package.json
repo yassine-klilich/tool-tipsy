@@ -1,8 +1,8 @@
 {
-  "name": "tool-tipsy",
+  "name": "yk-tool-tipsy",
   "version": "1.0.0",
   "description": "A lightweight tooltip library",
-  "main": "./dist/tool-tipsy.js",
+  "main": "./dist/yk-tool-tipsy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yassine-klilich/tool-tipsy.git"
+    "url": "git+https://github.com/yassine-klilich/yk-tool-tipsy.git"
   },
   "author": "Yassine KLILICH",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yassine-klilich/tool-tipsy/issues"
+    "url": "https://github.com/yassine-klilich/yk-tool-tipsy/issues"
   },
-  "homepage": "https://github.com/yassine-klilich/tool-tipsy#readme",
+  "homepage": "https://github.com/yassine-klilich/yk-tool-tipsy#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",

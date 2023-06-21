@@ -1,5 +1,5 @@
 
-import Tipsy, { TipsyPosition } from "./tool-tipsy.js"
+import Tipsy, { TipsyPosition } from "./yk-tool-tipsy.js"
 
 Tipsy.init()
 
